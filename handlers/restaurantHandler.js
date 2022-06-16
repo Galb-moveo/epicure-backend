@@ -1,70 +1,17 @@
 const Restaurant = require('../models/restaurantsModel');
 
-module.exports.getAllRestaurants = (req, res) => {
-  try {
-    Restaurant.find().then((restaurant) =>
-      res.status(200).send({ restaurants: restaurant }),
-    );
-  } catch {
-    (err) => console.log(err);
-  }
+module.exports.getAllRestaurants = async () => {
+  return await Restaurant.find();
 };
 
-module.exports.addRestaurant = (req, res) => {
-  const { name, image, dishes } = req.body;
-  try {
-    Restaurant.create({
-      name,
-      image,
-      dishes,
-    }).then((restaurant) => {
-      res.status(200).send(restaurant);
-    });
-  } catch {
-    (err) => {
-      if (err) {
-        console.log(err);
-      }
-    };
-  }
+module.exports.addRestaurant = async (body) => {
+  return await Restaurant.create(body);
 };
 
-module.exports.deleteRestaurantById = (req, res) => {
-  try {
-    Restaurant.findById(req.params.restaurantId).then((restaurant) => {
-      if (!restaurant) {
-        throw new Error('Dish not found');
-      }
-      if (restaurant) {
-        Restaurant.deleteOne(restaurant).then(() =>
-          res.status(200).send({ data: restaurant }),
-        );
-      } else {
-        throw new Error('cannot delete this Dish');
-      }
-    });
-  } catch {
-    (err) => {
-      if (err) {
-        throw new Error('Error occurred');
-      }
-    };
-  }
+module.exports.deleteRestaurantById = async () => {
+  return await Restaurant.deleteOne();
 };
 
-module.exports.updateRestaurant = (req, res) => {
-  const { name, image, dishes } = req.body;
-  try {
-    Restaurant.findByIdAndUpdate(req.params.restaurantId, {
-      name,
-      image,
-      dishes,
-    }).then((data) => {
-      res.status(200).send(data);
-    });
-  } catch {
-    (err) => {
-      console.log(err);
-    };
-  }
+module.exports.updateRestaurant = async (restaurantId, body) => {
+  return await Restaurant.findByIdAndUpdate(restaurantId, body);
 };
