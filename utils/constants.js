@@ -1,0 +1,1 @@
+module.exports.DB_ADDRESS = 'mongodb+srv://gal717358:iQkBNxjGEFCYJ4tp@epicure.ggrhr.mongodb.net/?retryWrites=true&w=majority';
