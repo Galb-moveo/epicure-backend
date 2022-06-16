@@ -4,8 +4,8 @@ const chefsRouter = require('../routes/chef');
 const resRouter = require('../routes/restaurant');
 const dishRouter = require('../routes/dish');
 
-router.use('/', chefsRouter);
-router.use('/', resRouter);
-router.use('/', dishRouter);
+router.use('/chefs', chefsRouter);
+router.use('/restaurants', resRouter);
+router.use('/dishes', dishRouter);
 
 module.exports = router;

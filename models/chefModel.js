@@ -9,11 +9,10 @@ const chefSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    // unique: true,
     require: true,
   },
   Restaurants: {
-    type: Object,
+    type: Array,
     // require: true,
   },
 });
