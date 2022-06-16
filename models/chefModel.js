@@ -9,11 +9,11 @@ const chefSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    require: true,
-  },
-  Restaurants: {
-    type: Array,
     // require: true,
   },
+  image: {
+    type: String,
+  },
 });
+
 module.exports = mongoose.model('chef', chefSchema);

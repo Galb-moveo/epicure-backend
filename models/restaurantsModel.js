@@ -11,8 +11,9 @@ const restaurantsSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  // dishes: {
-  //   type: Object,
-  // },
+  Chef: {
+    type: mongoose.Types.ObjectId,
+    ref: 'chefs',
+  },
 });
 module.exports = mongoose.model('restaurant', restaurantsSchema);

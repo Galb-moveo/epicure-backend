@@ -1,25 +1,40 @@
 const dishHandler = require('../handlers/dishHandler');
 
 exports.getAllDishes = async (req, res) => {
-  await dishHandler.getAllDishes(req, res);
+  try {
+    const fetchAllDishes = await dishHandler.getAllDishes();
+    res.send(fetchAllDishes);
+  } catch (err) {
+    res.send(err);
+  }
 };
 
 exports.addDish = async (req, res) => {
-  await dishHandler.addDish(req, res);
+  try {
+    const addDish = await dishHandler.addDish(req.body);
+    res.send(addDish);
+  } catch (err) {
+    res.send(err);
+  }
 };
 
 exports.deleteDishById = async (req, res) => {
-  await dishHandler.deleteDishById(req, res);
+  try {
+    await dishHandler.deleteDishById(req.params.dishId);
+    res.send('Dish ' + req.params.dishId + ' deleted');
+  } catch (err) {
+    res.send(err);
+  }
 };
 
 exports.updateDish = async (req, res) => {
-  await dishHandler.updateDish(req, res);
+  try {
+    const updateDish = await dishHandler.updateDish(
+      req.params.dishId,
+      req.body,
+    );
+    res.send(updateDish);
+  } catch (err) {
+    res.send(err);
+  }
 };
-
-
-
-
-
-
-
-

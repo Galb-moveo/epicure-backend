@@ -8,21 +8,23 @@ const dishSchema = new mongoose.Schema({
     maxlength: 30,
     require: true,
   },
+  image: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
   price: {
     type: Number,
-    // unique: true,
     require: true,
-  },
-  Ingredients: {
-    type: String,
-    // require: true,
   },
   tags: {
     type: String,
     require: true,
   },
-  restaurant: {
+  restaurant_id: {
     type: mongoose.Types.ObjectId,
+    ref: 'restaurants',
   },
 });
 module.exports = mongoose.model('dish', dishSchema);
