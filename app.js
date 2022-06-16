@@ -1,5 +1,5 @@
 const express = require('express');
-const routerRoutes = require('./routes/index');
+const apiRoutes = require('./routes/index');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { DB_ADDRESS } = require('./utils/constants');
@@ -13,7 +13,7 @@ mongoose.connect(DB_ADDRESS, {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', routerRoutes);
+app.use('/api', apiRoutes);
 
 app.listen(3000, () => {
   console.log(`App listening at port 3000`);

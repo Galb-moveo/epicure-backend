@@ -9,21 +9,10 @@ const restaurantsSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    // unique: true,
     require: true,
   },
-  dishes: {
-    type: Object,
-  },
-  // owner: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'chef',
-  //   required: true,
-  // },
-  // owner: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'restaurant',
-  //   required: true,
+  // dishes: {
+  //   type: Object,
   // },
 });
 module.exports = mongoose.model('restaurant', restaurantsSchema);
