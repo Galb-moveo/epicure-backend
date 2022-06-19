@@ -1,23 +1,26 @@
 const Dish = require('../models/dishModel');
 
 module.exports.getAllDishes = async () => {
-  return await Dish.find().populate({ path: 'restaurants' });
+  return Dish.find().populate({
+    path: 'Restaurant',
+    select: { _id: 0, __v: 0 },
+  });
 };
 
 module.exports.addDish = async (body) => {
-  return await Dish.create(body);
+  return Dish.create(body);
 };
 
 module.exports.deleteDishById = async () => {
-  return await Dish.deleteOne();
+  return Dish.deleteOne();
 };
 
 module.exports.updateDish = async (dishId, body) => {
-  return await Dish.findByIdAndUpdate(dishId, body);
+  return Dish.findByIdAndUpdate(dishId, body);
 };
 
-module.exports.findDishByKey = async (keyword) => {
-  return await Dish.find({
-    $or: [{ name: { $regex: keyword } }],
+module.exports.findDishByKey = async (query) => {
+  return Dish.find({
+    $or: [{ name: { $regex: query.q } }, { image: { $regex: query.image } }],
   });
 };

@@ -1,23 +1,23 @@
 const Chef = require('../models/chefModel');
 
 module.exports.getAllChefs = async () => {
-  return await Chef.find();
+  return Chef.find();
 };
 
 module.exports.addChef = async (body) => {
-  return await Chef.create(body);
+  return Chef.create(body);
 };
 
 module.exports.deleteChefById = async () => {
-  return await Chef.deleteOne();
+  return Chef.deleteOne();
 };
 
 module.exports.updateChef = async (chefId, body) => {
-  return await Chef.findByIdAndUpdate(chefId, body);
+  return Chef.findByIdAndUpdate(chefId, body);
 };
 
-module.exports.findChefByKey = async (keyword) => {
-  return await Chef.find({
-    $or: [{ name: { $regex: keyword } }],
+module.exports.findChefByKey = async (query) => {
+  return Chef.find({
+    $or: [{ name: { $regex: query.q } }, { image: { $regex: query.image } }],
   });
 };
