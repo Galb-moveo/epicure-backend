@@ -15,3 +15,9 @@ module.exports.deleteRestaurantById = async () => {
 module.exports.updateRestaurant = async (restaurantId, body) => {
   return await Restaurant.findByIdAndUpdate(restaurantId, body);
 };
+
+module.exports.findRestaurantByKey = async (keyword) => {
+  return await Restaurant.find({
+    $or: [{ name: { $regex: keyword } }],
+  });
+};

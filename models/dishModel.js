@@ -22,8 +22,8 @@ const dishSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  restaurant_id: {
-    type: mongoose.Types.ObjectId,
+  restaurants: {
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'restaurants',
   },
 });
