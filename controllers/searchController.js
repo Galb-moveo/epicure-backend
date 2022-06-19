@@ -2,12 +2,13 @@ const chefHandler = require('../handlers/chefHandler');
 const dishHandler = require('../handlers/dishHandler');
 const restaurantHandler = require('../handlers/restaurantHandler');
 
-exports.searchField = async (req, res) => {
+exports.searchField = async (req, res, next) => {
   try {
-    const chefData = await chefHandler.findChefByKey(req.params.keyword);
-    const dishData = await dishHandler.findDishByKey(req.params.keyword);
+    const chefData = await chefHandler.findChefByKey(req.query);
+    const dishData = await dishHandler.findDishByKey(req.query);
     const restaurantData = await restaurantHandler.findRestaurantByKey(
-      req.params.keyword,
+      // req.params.keyword,
+      req.query,
     );
     res.send([
       { Chefs: chefData },
@@ -15,6 +16,6 @@ exports.searchField = async (req, res) => {
       { Restaurants: restaurantData },
     ]);
   } catch (err) {
-    res.send(err);
+    next();
   }
 };

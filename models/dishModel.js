@@ -22,9 +22,10 @@ const dishSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  restaurants: {
+  Restaurant: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'restaurants',
+    required:true,
+    ref: 'Restaurant'
   },
 });
-module.exports = mongoose.model('dish', dishSchema);
+module.exports = mongoose.model('Dish', dishSchema);

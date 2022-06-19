@@ -9,11 +9,12 @@ const chefSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    // require: true,
+    require: true,
   },
   image: {
     type: String,
+    default: 'https://regvervr.jpg',
   },
 });
 
-module.exports = mongoose.model('chef', chefSchema);
+module.exports = mongoose.model('Chef', chefSchema);

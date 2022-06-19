@@ -1,33 +1,33 @@
 const dishHandler = require('../handlers/dishHandler');
 
-exports.getAllDishes = async (req, res) => {
+exports.getAllDishes = async (req, res, next) => {
   try {
     const fetchAllDishes = await dishHandler.getAllDishes();
     res.send(fetchAllDishes);
   } catch (err) {
-    res.send(err);
+    next();
   }
 };
 
-exports.addDish = async (req, res) => {
+exports.addDish = async (req, res, next) => {
   try {
     const addDish = await dishHandler.addDish(req.body);
     res.send(addDish);
   } catch (err) {
-    res.send(err);
+    next();
   }
 };
 
-exports.deleteDishById = async (req, res) => {
+exports.deleteDishById = async (req, res, next) => {
   try {
     await dishHandler.deleteDishById(req.params.dishId);
     res.send('Dish ' + req.params.dishId + ' deleted');
   } catch (err) {
-    res.send(err);
+    next();
   }
 };
 
-exports.updateDish = async (req, res) => {
+exports.updateDish = async (req, res, next) => {
   try {
     const updateDish = await dishHandler.updateDish(
       req.params.dishId,
@@ -35,6 +35,6 @@ exports.updateDish = async (req, res) => {
     );
     res.send(updateDish);
   } catch (err) {
-    res.send(err);
+    next();
   }
 };

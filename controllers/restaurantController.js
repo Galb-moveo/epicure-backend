@@ -1,33 +1,33 @@
 const restaurantHandler = require('../handlers/restaurantHandler');
 
-exports.getAllRestaurants = async (req, res) => {
+exports.getAllRestaurants = async (req, res, next) => {
   try {
     const fetchAllRestaurant = await restaurantHandler.getAllRestaurants();
     res.send(fetchAllRestaurant);
   } catch (err) {
-    res.send(err);
+    next();
   }
 };
 
-exports.addRestaurant = async (req, res) => {
+exports.addRestaurant = async (req, res, next) => {
   try {
     const addRestaurant = await restaurantHandler.addRestaurant(req.body);
     res.send(addRestaurant);
   } catch (err) {
-    res.send(err);
+    next();
   }
 };
 
-exports.deleteRestaurantById = async (req, res) => {
+exports.deleteRestaurantById = async (req, res, next) => {
   try {
     await restaurantHandler.deleteRestaurantById(req.params.restaurantId);
     res.send('Restaurant ' + req.params.restaurantId + ' deleted');
   } catch (err) {
-    res.send(err);
+    next();
   }
 };
 
-exports.updateRestaurant = async (req, res) => {
+exports.updateRestaurant = async (req, res, next) => {
   try {
     const updateRestaurant = await restaurantHandler.updateRestaurant(
       req.params.restaurantId,
@@ -35,6 +35,6 @@ exports.updateRestaurant = async (req, res) => {
     );
     res.send(updateRestaurant);
   } catch (err) {
-    res.send(err);
+    next();
   }
 };
