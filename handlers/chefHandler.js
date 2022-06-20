@@ -1,5 +1,6 @@
 const Chef = require('../models/chefModel');
 
+
 module.exports.getAllChefs = async () => {
   return Chef.find();
 };
@@ -16,8 +17,10 @@ module.exports.updateChef = async (chefId, body) => {
   return Chef.findByIdAndUpdate(chefId, body);
 };
 
-module.exports.findChefByKey = async (query) => {
-  return Chef.find({
-    $or: [{ name: { $regex: query.q } }, { image: { $regex: query.image } }],
+module.exports.findChefByKey = async (keyword) => {
+  console.log(keyword, 'chef');
+  return Chef.find(
+    {
+    $or:[ { name: { $regex: keyword }}],
   });
 };
