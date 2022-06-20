@@ -9,6 +9,16 @@ exports.getAllRestaurants = async (req, res, next) => {
   }
 };
 
+exports.getRestaurantsByChef = async (req, res, next) => {
+  try {
+    console.log(req.params.chefId);
+    const getRestaurantsByChef = await restaurantHandler.getRestaurantsByChef(req.params.chefId);
+    res.send(getRestaurantsByChef);
+  } catch (err) {
+    next();
+  }
+};
+
 exports.addRestaurant = async (req, res, next) => {
   try {
     const addRestaurant = await restaurantHandler.addRestaurant(req.body);
@@ -38,3 +48,5 @@ exports.updateRestaurant = async (req, res, next) => {
     next();
   }
 };
+
+

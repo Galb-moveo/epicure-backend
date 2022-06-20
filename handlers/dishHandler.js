@@ -2,9 +2,7 @@ const Dish = require('../models/dishModel');
 
 module.exports.getAllDishes = async () => {
   return Dish.find().populate({
-    path: 'Restaurant',
-    select: { _id: 0, __v: 0 },
-  });
+    path: 'Restaurant', select: { _id: 0, __v: 0 },});
 };
 
 module.exports.addDish = async (body) => {
@@ -19,8 +17,11 @@ module.exports.updateDish = async (dishId, body) => {
   return Dish.findByIdAndUpdate(dishId, body);
 };
 
-module.exports.findDishByKey = async (query) => {
-  return Dish.find({
-    $or: [{ name: { $regex: query.q } }, { image: { $regex: query.image } }],
-  });
+module.exports.findDishByKey = async (keyword) => {
+  console.log(keyword, 'dish');
+  return Dish.find(
+    {
+    $or:[ { name: { $regex: keyword }}],
+  }
+  );
 };
