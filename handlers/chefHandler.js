@@ -18,7 +18,6 @@ module.exports.updateChef = async (chefId, body) => {
 };
 
 module.exports.findChefByKey = async (keyword) => {
-  console.log(keyword, 'chef');
   return Chef.find(
     {
     $or:[ { name: { $regex: keyword }}],
