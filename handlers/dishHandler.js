@@ -18,7 +18,6 @@ module.exports.updateDish = async (dishId, body) => {
 };
 
 module.exports.findDishByKey = async (keyword) => {
-  console.log(keyword, 'dish');
   return Dish.find(
     {
     $or:[ { name: { $regex: keyword }}],

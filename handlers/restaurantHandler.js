@@ -23,7 +23,6 @@ module.exports.updateRestaurant = async (restaurantId, body) => {
 };
 
 module.exports.findRestaurantByKey = async (keyword) => {
-  console.log(keyword, 'rest');
   return Restaurant.find(
     {
     $or:[ { name: { $regex: keyword }}],
