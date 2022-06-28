@@ -2,6 +2,10 @@ const userHandler = require('../handlers/userHandler');
 const User = require('../models/userModal');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const NotFoundError = require('../middleware/errors/NotFoundError');
+const BadRequestError = require('../middleware/errors/BadRequestError');
+const ConflictError = require('../middleware/errors/ConflictError');
+const AuthenticationError = require('../middleware/errors/AuthenticationError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -29,8 +33,12 @@ exports.updateUser = async (req, res, next) => {
       req.params.userId,
       req.body,
     );
-    res.send(updateUser);
-  } catch (err) {
+    if(updateUser){
+      res.send(updateUser);
+    }else{
+      throw new NotFoundError('Id not found in the database');
+    }
+  } catch(err) {
     next();
   }
 };
@@ -49,9 +57,9 @@ module.exports.createUser = (req, res, next) => {
     )
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new Error(err);
+        throw new BadRequestError('The email and password are required');
       } else {
-        throw new Error(err);
+        throw new ConflictError('User with this email already exist');
       }
     })
     .catch(next);
@@ -67,12 +75,11 @@ module.exports.login = (req, res, next) => {
           NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
           { expiresIn: '7d' },
         );
-        res.send({ token });
+        res.send({ token,email,password });
       }
-    })
-    .catch((err) => {
+    }).catch((err) => {
       if (err) {
-        throw new Error('authorization failed');
+        throw new AuthenticationError('authorization failed');
       }
     })
     .catch(next);
