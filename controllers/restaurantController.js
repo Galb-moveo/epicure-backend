@@ -3,7 +3,13 @@ const restaurantHandler = require('../handlers/restaurantHandler');
 exports.getAllRestaurants = async (req, res, next) => {
   try {
     const fetchAllRestaurant = await restaurantHandler.getAllRestaurants();
-    res.send(fetchAllRestaurant);
+    let newArray = [];
+    fetchAllRestaurant.map((item) => {
+      if (item.isActive) {
+        newArray.push(item);
+      }
+    });
+    res.send(newArray);
   } catch (err) {
     next();
   }

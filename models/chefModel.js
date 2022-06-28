@@ -15,6 +15,10 @@ const chefSchema = new mongoose.Schema({
     type: String,
     default: 'https://regvervr.jpg',
   },
+  isActive: {
+    type: Boolean,
+    default:true
+  },
 });
 
 module.exports = mongoose.model('Chef', chefSchema);

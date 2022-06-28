@@ -3,7 +3,13 @@ const dishHandler = require('../handlers/dishHandler');
 exports.getAllDishes = async (req, res, next) => {
   try {
     const fetchAllDishes = await dishHandler.getAllDishes();
-    res.send(fetchAllDishes);
+    let newArray = [];
+    fetchAllDishes.map((item) => {
+      if (item.isActive) {
+        newArray.push(item);
+      }
+    });
+    res.send(newArray);
   } catch (err) {
     next();
   }

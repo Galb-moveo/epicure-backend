@@ -6,6 +6,9 @@ const chefOfWeekSchema = new mongoose.Schema({
     ref: 'Chef',
     require: true,
   },
+  isActive: {
+    type: Boolean,
+  },
 });
 
 module.exports = mongoose.model('ChefOfWeek', chefOfWeekSchema);
