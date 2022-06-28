@@ -3,6 +3,10 @@ const User = require('../models/userModal');
 module.exports.getAllUsers = async () => {
     return User.find();
   };
+
+module.exports.getCurrentUser = async (userID) => {
+  return User.findById(userID);
+  };
   
   module.exports.deleteUserById = async () => {
     return User.deleteOne();

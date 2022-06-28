@@ -18,6 +18,28 @@ exports.getAllUsers = async (req, res, next) => {
   }
 };
 
+// module.exports.getCurrentUser = ((req, res, next) => {
+//   User.findById(req.user._id)
+//     .then((user) => {
+//       if (user) {
+//         res.send({ data: user });
+//       } else {
+//         throw new NotFoundError('the user was not found');
+//       }
+//     })
+//     .catch(next);
+// });
+
+exports.getCurrentUser = async (req, res, next) => {
+  console.log(req.user._id);
+  try {
+    const getUser = await userHandler.getCurrentUser(req.user._id);
+    res.send(getUser);
+  } catch (err) {
+    next();
+  }
+};
+
 exports.deleteUserById = async (req, res, next) => {
   try {
     await userHandler.deleteUserById(req.params.userId);
