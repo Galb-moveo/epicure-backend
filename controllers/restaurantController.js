@@ -36,6 +36,7 @@ exports.addRestaurant = async (req, res, next) => {
 exports.deleteRestaurantById = async (req, res, next) => {
   try {
     await restaurantHandler.deleteRestaurantById(req.params.restaurantId);
+    // await restaurantHandler.deleteRestaurantById(req.params.restaurantId);
     res.send('Restaurant ' + req.params.restaurantId + ' deleted');
   } catch (err) {
     next();
