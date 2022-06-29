@@ -19,13 +19,18 @@ const dishSchema = new mongoose.Schema({
     require: true,
   },
   tags: {
-    type: String,
-    require: true,
+    type: Array,
+    default:['https://svgshare.com/i/i45.svg']
+    // require: true,
   },
   Restaurant: {
     type: mongoose.Schema.Types.ObjectId,
     required:true,
     ref: 'Restaurant'
+  },
+  isActive: {
+    type: Boolean,
+    default:true
   },
 });
 module.exports = mongoose.model('Dish', dishSchema);

@@ -13,8 +13,9 @@ const restaurantsSchema = new mongoose.Schema({
   },
   Chef: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
+    // required: true,
     ref: 'Chef',
+    
   },
   SignatureDish: {
     type: mongoose.Schema.Types.ObjectId,
@@ -26,6 +27,10 @@ const restaurantsSchema = new mongoose.Schema({
 
   stars: {
     type: Number,
+  },
+  isActive: {
+    type: Boolean,
+    default:true
   },
 });
 module.exports = mongoose.model('Restaurant', restaurantsSchema);

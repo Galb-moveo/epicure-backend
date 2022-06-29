@@ -1,4 +1,5 @@
 const Restaurant = require('../models/restaurantsModel');
+const Dish = require('../models/dishModel');
 
 module.exports.getAllRestaurants = async () => {
   return Restaurant.find()
@@ -14,8 +15,9 @@ module.exports.addRestaurant = async (body) => {
   return Restaurant.create(body);
 };
 
-module.exports.deleteRestaurantById = async () => {
-  return Restaurant.deleteOne();
+module.exports.deleteRestaurantById = async (id) => {
+  Dish.findByIdAndDelete(id);
+  return Restaurant.deleteOne(id);
 };
 
 module.exports.updateRestaurant = async (restaurantId, body) => {
