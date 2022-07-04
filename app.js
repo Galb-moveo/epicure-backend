@@ -19,8 +19,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post('/signin', login);
-app.post('/signup', createUser);
+app.post('/api/signin', login);
+app.post('/api/signup', createUser);
 
 app.use('/api', apiRoutes);
 

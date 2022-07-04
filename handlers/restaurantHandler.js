@@ -8,6 +8,7 @@ module.exports.getAllRestaurants = async () => {
 };
 
 module.exports.getRestaurantsByChef = async (chefId) => {
+  console.log(chefId);
   return Restaurant.find({Chef: chefId});
 };
 

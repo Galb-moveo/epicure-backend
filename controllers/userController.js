@@ -31,7 +31,6 @@ exports.getAllUsers = async (req, res, next) => {
 // });
 
 exports.getCurrentUser = async (req, res, next) => {
-  console.log(req.user._id);
   try {
     const getUser = await userHandler.getCurrentUser(req.user._id);
     res.send(getUser);
